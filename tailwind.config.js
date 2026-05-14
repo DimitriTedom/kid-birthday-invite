@@ -9,6 +9,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        display: ["var(--font-display)", "Nunito", "sans-serif"],
+        body: ["var(--font-body)", "Nunito Sans", "sans-serif"],
         nexa: ["Nexa", "sans-serif"],
       },
       borderRadius: {
@@ -17,6 +19,17 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        brand: {
+          red: "#E92828",
+          deep: "#B91515",
+          soft: "#FFF1F1",
+          warm: "#FFF9F7",
+          yellow: "#FFD84D",
+          blue: "#A7D8FF",
+        },
+        ink: "#1E1E2F",
+        muted: "#6B7280",
+        borderLight: "#F3DADA",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

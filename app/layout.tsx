@@ -1,44 +1,56 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Nunito, Nunito_Sans } from "next/font/google";
+import { eventConfig } from "@/lib/event-config";
 import "../styles/globals.css";
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "700", "800"],
+  variable: "--font-display",
+});
+
+const nunitoSans = Nunito_Sans({
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800"],
+  variable: "--font-body",
+});
 
 export const metadata: Metadata = {
   title: {
-    default: "Snowdev NextJs Template",
-    template: "%s | Snowdev NextJs Template",
+    default: `Invitation anniversaire de ${eventConfig.childName} — ${eventConfig.age} ans`,
+    template: `%s | Invitation anniversaire de ${eventConfig.childName}`,
   },
-  description:
-    "",
+  description: eventConfig.eventDescription,
   keywords: [
-    "snowdev",
-    "template"
+    "invitation",
+    "anniversaire",
+    eventConfig.childName,
+    "super héros",
+    "enfant",
   ],
-  authors: [{ name: "Dimitri Tedom", url: "https://github.com/DimitriTedom" }],
-  metadataBase: new URL("https://snow-dev-portfolio-mu.vercel.app/"),
+  authors: [{ name: `Famille de ${eventConfig.childName}` }],
+  metadataBase: new URL(eventConfig.siteUrl),
   openGraph: {
-    title: "Snowdev NextJs Template",
-    description:
-      "",
-    url: "https://snow-dev-portfolio-mu.vercel.app/",
-    siteName: "Snowdev NextJs Template",
+    title: `Invitation anniversaire de ${eventConfig.childName} — ${eventConfig.age} ans`,
+    description: eventConfig.eventDescription,
+    url: eventConfig.siteUrl,
+    siteName: `Invitation anniversaire de ${eventConfig.childName}`,
     images: [
       {
-        url: "https://snow-prompt-builder.vercel.app/og-image.png",
+        url: "/images/stitch/invitation-nolan.png",
         width: 1200,
         height: 630,
-        alt: "Snowdev NextJs Template Preview",
+        alt: `Invitation anniversaire de ${eventConfig.childName}`,
       },
     ],
-    locale: "en_US",
+    locale: "fr_FR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    site: "@DimitriTedom",
-    creator: "@DimitriTedom",
-    title: "Snowdev NextJs Template",
-    description:
-      "",
-    images: ["https://snow-dev-portfolio-mu.vercel.app/og-image.png"],
+    title: `Invitation anniversaire de ${eventConfig.childName} — ${eventConfig.age} ans`,
+    description: eventConfig.eventDescription,
+    images: ["/images/stitch/invitation-nolan.png"],
   },
   robots: {
     index: true,
@@ -47,9 +59,13 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/og-image.png",
-    apple: "/og-image.png",
+    shortcut: "/images/stitch/invitation-nolan.png",
+    apple: "/images/stitch/invitation-nolan.png",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#E92828",
 };
 
 export default function RootLayout({
@@ -58,9 +74,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body
-        className={`font-nexa`}
+        className={`${nunito.variable} ${nunitoSans.variable} font-body bg-background text-foreground`}
       >
         {children}
       </body>
